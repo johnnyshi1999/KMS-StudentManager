@@ -8,21 +8,25 @@
 
 <p>
     @Html.ActionLink("Create New", "Create")
-</p>
-<form asp-controller="Movies" asp-action="Index">
+    @using (Html.BeginForm("Index", "Student", FormMethod.Get))
+    {
     <p>
-        Title: <input type="text" name="SearchName">
+        Name: @Html.TextBox("SearchName")
         <input type="submit" value="Filter" />
     </p>
-</form>
+    }
+</p>
+
 <table class="table">
     <tr>
         <th>
-            @*@Html.ActionLink("Full name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })*@
-            @Html.DisplayNameFor(model => model.FullName)
+            @Html.ActionLink("Full name", "Index", new { SortOrder = ViewBag.NameSortParam})
+            @*@Html.DisplayNameFor(model => model.FullName)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateOfBirth)
+            @Html.ActionLink("Dt. Of Birth", "Index", new { SortOrder = ViewBag.DateSortParam})
+
+            @*@Html.DisplayNameFor(model => model.DateOfBirth)*@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PhoneNumber)

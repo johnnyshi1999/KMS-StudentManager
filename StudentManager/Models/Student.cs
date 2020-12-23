@@ -24,6 +24,7 @@ namespace StudentManager.Models
 
         [DataType(DataType.Date)]
         [Display(Name = "Dt. Of Birth")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime DateOfBirth { get; set; }
 
         [DataType(DataType.PhoneNumber)]

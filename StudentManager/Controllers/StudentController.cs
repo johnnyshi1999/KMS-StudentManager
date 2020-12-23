@@ -14,6 +14,8 @@ namespace StudentManager.Controllers
         // GET: Student
         public ActionResult Index(string SearchName, string SortOrder)
         {
+            ViewBag.NameSortParam = String.IsNullOrEmpty(SortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParam = SortOrder == "date" ? "date_desc" : "date";
             var searchList = from m in context.Students
                          select m;
 
@@ -27,10 +29,15 @@ namespace StudentManager.Controllers
                 case "name_desc":
                     searchList = searchList.OrderByDescending(s => s.FullName);
                     break;
+                case "date":
+                    searchList = searchList.OrderBy(s => s.FullName);
+                    break;
                 case "date_desc":
                     searchList = searchList.OrderByDescending(s => s.DateOfBirth);
                     break;
+                    
                 default:
+                    searchList = searchList.OrderBy(s => s.FullName);
                     break;
             }
 
