@@ -12,23 +12,31 @@ namespace StudentManager.Models
         public int StudentId { get; set; }
 
         [Required]
+        [Display(Name = "Full Name")]
         public string FullName { get; set; }
 
-        [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "Dt. Of Birth")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime DateOfBirth { get; set; }
 
-        [Required]
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Phone No.")]
         public string PhoneNumber { get; set; }
 
         [Required]
+        [Range(0, 10)]
         public double Mathematics { get; set; }
 
         [Required]
+        [Range(0, 10)]
         public double Literatures { get; set; }
 
         [Required]
+        [Range(0, 10)]
         public double English { get; set; }
 
+        [Display(Name = "Avg. Score")]
         public double Average
         {
             get
@@ -36,5 +44,6 @@ namespace StudentManager.Models
                 return (Mathematics + Literatures + English) / 3;
             }
         }
+
     }
 }

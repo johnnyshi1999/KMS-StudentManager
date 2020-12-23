@@ -19,7 +19,11 @@ namespace StudentManager
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            MapperConfig = new MapperConfiguration(cfg => cfg.CreateMap<Student, StudentViewModel>());
+            MapperConfig = new MapperConfiguration(cfg => 
+            { 
+                cfg.CreateMap<Student, StudentViewModel>();
+                cfg.CreateMap<StudentViewModel, Student>();
+            });
         }
     }
 }

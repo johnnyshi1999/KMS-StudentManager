@@ -12,6 +12,7 @@ namespace StudentManager.Controllers
 {
     public class StudentController : Controller
     {
+        Mapper mapper = new Mapper(MvcApplication.MapperConfig);
 
         SchoolDatabaseEntities context = new SchoolDatabaseEntities();
 
@@ -25,38 +26,28 @@ namespace StudentManager.Controllers
             var studentList = service.Filter(searchName, sortOrder);
             var studentViewModelList = new List<StudentViewModel>();
 
-            var mapper = new Mapper(MvcApplication.MapperConfig);
-
             foreach (var s in studentList)
             {
                 studentViewModelList.Add(mapper.Map<StudentViewModel>(s));
             };
-            return View(service.Filter(searchName, sortOrder));
+            return View(studentViewModelList);
         }
 
         public ActionResult Edit(int? id)
         {
-            Student student = context.Students.Where(s => s.StudentId == id).FirstOrDefault();
+            Student student = StudentService.GetInstance().GetById(id);
 
-            return View(student);
+            return View(mapper.Map<StudentViewModel>(student));
 
         }
 
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "StudentId, FullName, DateOfBirth, PhoneNumber, Mathematics, Literatures, English")] Student student)
+        public ActionResult Edit([Bind(Include = "StudentId, FullName, DateOfBirth, PhoneNumber, Mathematics, Literatures, English")] StudentViewModel student)
         {
-            Student edittedStudent = context.Students.Where(s => s.StudentId == student.StudentId).FirstOrDefault();
-
             if (ModelState.IsValid)
             {
-                edittedStudent.FullName = student.FullName;
-                edittedStudent.DateOfBirth = student.DateOfBirth;
-                edittedStudent.PhoneNumber = student.PhoneNumber;
-                edittedStudent.Mathematics = student.Mathematics;
-                edittedStudent.Literatures = student.Literatures;
-                edittedStudent.English = student.English;
+                StudentService.GetInstance().UpdateStudent(student);
 
-                context.SaveChanges();
                 return RedirectToAction("Index");
             }
             else
@@ -72,13 +63,23 @@ namespace StudentManager.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create([Bind(Include = "FullName, DateOfBirth, PhoneNumber, Mathematics, Literatures, English")] Student student)
+        public ActionResult Create([Bind(Include = "FullName, DateOfBirth, PhoneNumber, Mathematics, Literatures, English")] StudentViewModel student)
         {
+            //if (ModelState.IsValid)
+            //{
+            //    context.Students.Add(student);
+
+            //    context.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+            //else
+            //{
+            //    return View(student);
+            //}
+
             if (ModelState.IsValid)
             {
-                context.Students.Add(student);
-
-                context.SaveChanges();
+                StudentService.GetInstance().CreateStudent(student);
                 return RedirectToAction("Index");
             }
             else
@@ -90,23 +91,23 @@ namespace StudentManager.Controllers
 
         public ActionResult Delete(int? id)
         {
-            Student deletedStudent = context.Students.Where(s => s.StudentId == id).FirstOrDefault();
-            return View(deletedStudent);
+            Student deletedStudent = StudentService.GetInstance().GetById(id);
+
+            return View(mapper.Map<StudentViewModel>(deletedStudent));
         }
 
         [HttpPost]
         [ActionName("Delete")]
         public ActionResult DeleteConfirm(int? id)
         {
-            Student deletedStudent = context.Students.Where(s => s.StudentId == id).FirstOrDefault();
-            context.Students.Remove(deletedStudent);
+            StudentService.GetInstance().DeleteById(id);
             return RedirectToAction("Index");
         }
 
         public ActionResult Details(int? id)
         {
-            Student student = context.Students.Where(s => s.StudentId == id).FirstOrDefault();
-            return View(student);
+            Student student = StudentService.GetInstance().GetById(id);
+            return View(mapper.Map<StudentViewModel>(student));
         }
 
     }
