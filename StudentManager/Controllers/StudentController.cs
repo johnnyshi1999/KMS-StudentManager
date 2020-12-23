@@ -1,8 +1,12 @@
-﻿using StudentManager.Models;
+﻿using StudentManager;
+using StudentManager.Services;
 using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
+using AutoMapper;
+using StudentManager.Models;
+using System.Collections.Generic;
 
 namespace StudentManager.Controllers
 {
@@ -12,36 +16,22 @@ namespace StudentManager.Controllers
         SchoolDatabaseEntities context = new SchoolDatabaseEntities();
 
         // GET: Student
-        public ActionResult Index(string SearchName, string SortOrder)
+        public ActionResult Index(string searchName, string sortOrder)
         {
-            ViewBag.NameSortParam = String.IsNullOrEmpty(SortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParam = SortOrder == "date" ? "date_desc" : "date";
-            var searchList = from m in context.Students
-                         select m;
+            ViewBag.NameSortParam = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParam = sortOrder == "date" ? "date_desc" : "date";
 
-            if (!String.IsNullOrEmpty(SearchName))
+            StudentService service = StudentService.GetInstance();
+            var studentList = service.Filter(searchName, sortOrder);
+            var studentViewModelList = new List<StudentViewModel>();
+
+            var mapper = new Mapper(MvcApplication.MapperConfig);
+
+            foreach (var s in studentList)
             {
-                searchList = searchList.Where(s => s.FullName.Contains(SearchName));
-            }
-
-            switch (SortOrder)
-            {
-                case "name_desc":
-                    searchList = searchList.OrderByDescending(s => s.FullName);
-                    break;
-                case "date":
-                    searchList = searchList.OrderBy(s => s.FullName);
-                    break;
-                case "date_desc":
-                    searchList = searchList.OrderByDescending(s => s.DateOfBirth);
-                    break;
-                    
-                default:
-                    searchList = searchList.OrderBy(s => s.FullName);
-                    break;
-            }
-
-            return View(searchList.ToList());
+                studentViewModelList.Add(mapper.Map<StudentViewModel>(s));
+            };
+            return View(service.Filter(searchName, sortOrder));
         }
 
         public ActionResult Edit(int? id)
