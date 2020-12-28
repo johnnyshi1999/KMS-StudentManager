@@ -42,14 +42,5 @@ namespace StudentManager
         [Range(0, 10)]
         public double English { get; set; }
 
-        [Display(Name = "Avg. Score")]
-        public double Average
-        {
-            get
-            {
-                return (Mathematics + Literatures + English) / 3;
-            }
-        }
-
     }
 }

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using AutoMapper;
+using StudentManager.AutoMapper;
 using StudentManager.Models;
 
 namespace StudentManager
@@ -21,8 +22,7 @@ namespace StudentManager
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             MapperConfig = new MapperConfiguration(cfg => 
             { 
-                cfg.CreateMap<Student, StudentViewModel>();
-                cfg.CreateMap<StudentViewModel, Student>();
+                cfg.AddProfile(new StudentProfile());
             });
         }
     }
