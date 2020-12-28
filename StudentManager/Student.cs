@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StudentManager.Models
+namespace StudentManager
 {
     using System;
     using System.Collections.Generic;
@@ -24,7 +24,6 @@ namespace StudentManager.Models
 
         [DataType(DataType.Date)]
         [Display(Name = "Dt. Of Birth")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime DateOfBirth { get; set; }
 
         [DataType(DataType.PhoneNumber)]
@@ -43,7 +42,7 @@ namespace StudentManager.Models
         [Range(0, 10)]
         public double English { get; set; }
 
-        [Display(Name ="Avg. Score")]
+        [Display(Name = "Avg. Score")]
         public double Average
         {
             get

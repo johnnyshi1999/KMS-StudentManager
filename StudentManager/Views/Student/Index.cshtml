@@ -1,4 +1,4 @@
-﻿@model IEnumerable<StudentManager.Models.Student>
+﻿@model IEnumerable<StudentManager.Models.StudentViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -16,17 +16,13 @@
     </p>
     }
 </p>
-
 <table class="table">
     <tr>
         <th>
-            @Html.ActionLink("Full name", "Index", new { SortOrder = ViewBag.NameSortParam})
-            @*@Html.DisplayNameFor(model => model.FullName)*@
+            @Html.ActionLink("Full name", "Index", new { SortOrder = ViewBag.NameSortParam })
         </th>
         <th>
-            @Html.ActionLink("Dt. Of Birth", "Index", new { SortOrder = ViewBag.DateSortParam})
-
-            @*@Html.DisplayNameFor(model => model.DateOfBirth)*@
+            @Html.ActionLink("Dt. Of Birth", "Index", new { SortOrder = ViewBag.DateSortParam })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PhoneNumber)
@@ -47,34 +43,34 @@
     </tr>
 
 @foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.FullName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.DateOfBirth)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.PhoneNumber)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Mathematics)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Literatures)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.English)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Average)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.StudentId }) |
-        @Html.ActionLink("Details", "Details", new { id = item.StudentId }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.StudentId })
-    </td>
-</tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfBirth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mathematics)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Literatures)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.English)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Average)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.StudentId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.StudentId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.StudentId })
+        </td>
+    </tr>
 }
 
 </table>

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StudentManager.Models
+namespace StudentManager
 {
     using System;
     using System.Data.Entity;
@@ -22,9 +22,11 @@ namespace StudentManager.Models
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            throw new UnintentionalCodeFirstException();
         }
     
         public virtual DbSet<Student> Students { get; set; }
+
+        public System.Data.Entity.DbSet<StudentManager.Models.StudentViewModel> StudentViewModels { get; set; }
     }
 }
