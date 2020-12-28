@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using NLog;
 using StudentManager.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 
 namespace StudentManager.Services
 {
@@ -58,21 +60,15 @@ namespace StudentManager.Services
             return searchList.ToList();
         }
 
-        public bool UpdateStudent(StudentViewModel viewModel)
+        public void UpdateStudent(StudentViewModel viewModel)
         {
             Student edittedStudent = context.Students.Where(s => s.StudentId == viewModel.StudentId).FirstOrDefault();
-            if (edittedStudent != null)
+            if (edittedStudent == null)
             {
-                mapper.Map<StudentViewModel, Student>(viewModel, edittedStudent);
-
-                context.SaveChanges();
-
-                return true;
+                throw new StudentNotFoundException(string.Format("Cannot found student with this id: {0}", viewModel.StudentId));
             }
-            else
-            {
-                return false;
-            }
+            mapper.Map<StudentViewModel, Student>(viewModel, edittedStudent);
+            context.SaveChanges();
         }
 
         public void CreateStudent(StudentViewModel viewModel)
@@ -84,14 +80,45 @@ namespace StudentManager.Services
 
         public Student GetById(int? id)
         {
-            return context.Students.Where(s => s.StudentId == id).FirstOrDefault();
+            
+            Student student =  context.Students.Where(s => s.StudentId == id).FirstOrDefault();
+
+            if (student == null)
+            {
+                throw new StudentNotFoundException(string.Format("Cannot found student with this id: {0}", id));
+            }
+            return student;
         }
 
         public void DeleteById(int? id)
         {
             Student student = context.Students.Where(s => s.StudentId == id).FirstOrDefault();
+            if (student == null)
+            {
+                throw new StudentNotFoundException(string.Format("Cannot found student with this id: {0}", id));
+            }
             context.Students.Remove(student);
             context.SaveChanges();
+        }
+    }
+
+    [Serializable]
+    public class StudentNotFoundException : Exception
+    {
+        public StudentNotFoundException()
+        {
+        }
+
+        public StudentNotFoundException(string message) : base(message)
+        {
+        }
+
+        public StudentNotFoundException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+
+        protected StudentNotFoundException(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
         }
     }
 }
