@@ -26,7 +26,5 @@ namespace StudentManager
         }
     
         public virtual DbSet<Student> Students { get; set; }
-
-        public System.Data.Entity.DbSet<StudentManager.Models.StudentViewModel> StudentViewModels { get; set; }
     }
 }
