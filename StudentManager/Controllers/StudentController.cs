@@ -51,7 +51,7 @@ namespace StudentManager.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "StudentId, FullName, DateOfBirth, PhoneNumber, Mathematics, Literatures, English")] StudentViewModel student)
+        public ActionResult Edit([Bind(Include = "StudentId, FullName, DateOfBirth, Address, PhoneNumber, Mathematics, Literatures, English")] StudentViewModel student)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +72,7 @@ namespace StudentManager.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create([Bind(Include = "FullName, DateOfBirth, PhoneNumber, Mathematics, Literatures, English")] StudentViewModel student)
+        public ActionResult Create([Bind(Include = "FullName, DateOfBirth, Address, PhoneNumber, Mathematics, Literatures, English")] StudentViewModel student)
         {
             //if (ModelState.IsValid)
             //{
@@ -131,7 +131,7 @@ namespace StudentManager.Controllers
             } catch(StudentNotFoundException e)
             {
                 logger.Error(e);
-                return View("Error")
+                return View("Error");
             }
 
 
