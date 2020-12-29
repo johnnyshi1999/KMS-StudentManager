@@ -20,6 +20,10 @@ namespace StudentManager.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime DateOfBirth { get; set; }
 
+        [Required]
+        [StringLength(70)]
+        public String Address { get; set; }
+
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Phone No.")]
         public string PhoneNumber { get; set; }

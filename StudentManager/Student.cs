@@ -11,36 +11,16 @@ namespace StudentManager
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Student
     {
-        [Key]
         public int StudentId { get; set; }
-
-        [Required]
-        [Display(Name = "Full Name")]
         public string FullName { get; set; }
-
-        [DataType(DataType.Date)]
-        [Display(Name = "Dt. Of Birth")]
         public System.DateTime DateOfBirth { get; set; }
-
-        [DataType(DataType.PhoneNumber)]
-        [Display(Name = "Phone No.")]
         public string PhoneNumber { get; set; }
-
-        [Required]
-        [Range(0, 10)]
         public double Mathematics { get; set; }
-
-        [Required]
-        [Range(0, 10)]
         public double Literatures { get; set; }
-
-        [Required]
-        [Range(0, 10)]
         public double English { get; set; }
-
+        public string Address { get; set; }
     }
 }

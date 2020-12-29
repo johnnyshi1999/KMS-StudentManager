@@ -25,6 +25,9 @@
             @Html.ActionLink("Dt. Of Birth", "Index", new { SortOrder = ViewBag.DateSortParam })
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.PhoneNumber)
         </th>
         <th>
@@ -43,34 +46,37 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateOfBirth)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhoneNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mathematics)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Literatures)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.English)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Average)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.StudentId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.StudentId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.StudentId })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.FullName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateOfBirth)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Address)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PhoneNumber)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Mathematics)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Literatures)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.English)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Average)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.StudentId }) |
+        @Html.ActionLink("Details", "Details", new { id = item.StudentId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.StudentId })
+    </td>
+</tr>
 }
 
 </table>
