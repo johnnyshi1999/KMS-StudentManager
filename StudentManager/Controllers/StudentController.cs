@@ -33,18 +33,18 @@ namespace StudentManager.Controllers
 
         public ActionResult Edit(int? id)
         {
-            //Student student = StudentService.GetInstance().GetById(id);
-            //return View(mapper.Map<StudentViewModel>(student));
-            try
-            {
-                Student student = StudentService.GetInstance().GetById(id);
-                return View(mapper.Map<StudentViewModel>(student));
-            }
-            catch (StudentNotFoundException e)
-            {
-                //logger.Error(e);
-                throw;
-            }
+            Student student = StudentService.GetInstance().GetById(id);
+            return View(mapper.Map<StudentViewModel>(student));
+            //try
+            //{
+            //    Student student = StudentService.GetInstance().GetById(id);
+            //    return View(mapper.Map<StudentViewModel>(student));
+            //}
+            //catch (StudentNotFoundException e)
+            //{
+            //    //logger.Error(e);
+            //    throw;
+            //}
 
 
 
