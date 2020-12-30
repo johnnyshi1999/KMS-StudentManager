@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using NLog;
+using StudentManager.Logs;
 using StudentManager.Models;
 using System;
 using System.Collections.Generic;
@@ -103,7 +104,7 @@ namespace StudentManager.Services
     }
 
     [Serializable]
-    public class StudentNotFoundException : Exception
+    public class StudentNotFoundException : CustomException
     {
         public StudentNotFoundException()
         {
@@ -117,8 +118,14 @@ namespace StudentManager.Services
         {
         }
 
-        protected StudentNotFoundException(SerializationInfo info, StreamingContext context) : base(info, context)
+        public StudentNotFoundException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
+        }
+
+        public override void LogSelf()
+        {
+            Logger logger = NLog.LogManager.GetCurrentClassLogger();
+            logger.Error(this);
         }
     }
 }

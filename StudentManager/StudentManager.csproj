@@ -143,6 +143,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logs\CustomException.cs" />
+    <Compile Include="Logs\ExceptionLogger.cs" />
     <Compile Include="Models\StudentViewModel.cs" />
     <Compile Include="SchoolModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -230,7 +232,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Logs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
