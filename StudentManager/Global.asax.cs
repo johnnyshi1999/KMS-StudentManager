@@ -8,6 +8,7 @@ using System.Web.Routing;
 using AutoMapper;
 using NLog;
 using StudentManager.AutoMapper;
+using StudentManager.Logs;
 using StudentManager.Models;
 
 namespace StudentManager
@@ -38,6 +39,12 @@ namespace StudentManager
 
             //// Apply config           
             //NLog.LogManager.Configuration = config;
+        }
+
+        protected void Application_Error()
+        {
+            Exception lastException = Server.GetLastError();
+            ExceptionLogger.LogException(lastException);
         }
     }
 }

@@ -10,7 +10,6 @@ namespace StudentManager.Controllers
 {
     public class StudentController : Controller
     {
-        private static Logger logger = NLog.LogManager.GetCurrentClassLogger();
         Mapper mapper = new Mapper(MvcApplication.MapperConfig);
 
         SchoolDatabaseEntities context = new SchoolDatabaseEntities();
@@ -34,16 +33,18 @@ namespace StudentManager.Controllers
 
         public ActionResult Edit(int? id)
         {
-            try
-            {
-                Student student = StudentService.GetInstance().GetById(id);
-                return View(mapper.Map<StudentViewModel>(student));
-            }
-            catch (StudentNotFoundException e)
-            {
-                logger.Error(e);
-                return View("Error");
-            }
+            Student student = StudentService.GetInstance().GetById(id);
+            return View(mapper.Map<StudentViewModel>(student));
+            //try
+            //{
+            //    Student student = StudentService.GetInstance().GetById(id);
+            //    return View(mapper.Map<StudentViewModel>(student));
+            //}
+            //catch (StudentNotFoundException e)
+            //{
+            //    //logger.Error(e);
+            //    throw;
+            //}
 
 
 
@@ -74,18 +75,6 @@ namespace StudentManager.Controllers
         [HttpPost]
         public ActionResult Create([Bind(Include = "FullName, DateOfBirth, Address, PhoneNumber, Mathematics, Literatures, English")] StudentViewModel student)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    context.Students.Add(student);
-
-            //    context.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
-            //else
-            //{
-            //    return View(student);
-            //}
-
             if (ModelState.IsValid)
             {
                 StudentService.GetInstance().CreateStudent(student);
@@ -100,6 +89,8 @@ namespace StudentManager.Controllers
 
         public ActionResult Delete(int? id)
         {
+            //Student deletedStudent = StudentService.GetInstance().GetById(id);
+            //return View(mapper.Map<StudentViewModel>(deletedStudent));
             try
             {
                 Student deletedStudent = StudentService.GetInstance().GetById(id);
@@ -107,8 +98,8 @@ namespace StudentManager.Controllers
             }
             catch (StudentNotFoundException e)
             {
-                logger.Error(e);
-                return View("Error");
+                //logger.Error(e);
+                throw;
             }
 
 
@@ -124,14 +115,16 @@ namespace StudentManager.Controllers
 
         public ActionResult Details(int? id)
         {
+            //Student student = StudentService.GetInstance().GetById(id);
+            //return View(mapper.Map<StudentViewModel>(student));
             try
             {
                 Student student = StudentService.GetInstance().GetById(id);
                 return View(mapper.Map<StudentViewModel>(student));
-            } catch(StudentNotFoundException e)
+            }
+            catch (StudentNotFoundException e)
             {
-                logger.Error(e);
-                return View("Error");
+                throw;
             }
 
 
