@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using NLog;
 using StudentManager.Logs;
+using StudentManager.Logs.CustomExceptions;
 using StudentManager.Models;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,8 @@ namespace StudentManager.Services
 {
     public class StudentService
     {
-        static StudentService instance = null;
+        private static StudentService instance = null;
+        private static readonly object padLock = new object();
 
         Mapper mapper = new Mapper(MvcApplication.MapperConfig);
 
@@ -26,7 +28,14 @@ namespace StudentManager.Services
         {
             if (instance == null)
             {
-                instance = new StudentService();
+                lock (padLock)
+                {
+                    if (instance == null)
+                    {
+                        instance = new StudentService();
+                    }
+                }
+                
             }
             return instance;
         }
@@ -63,69 +72,71 @@ namespace StudentManager.Services
 
         public void UpdateStudent(StudentViewModel viewModel)
         {
-            Student edittedStudent = context.Students.Where(s => s.StudentId == viewModel.StudentId).FirstOrDefault();
-            if (edittedStudent == null)
+            try
             {
-                throw new StudentNotFoundException(string.Format("Cannot found student with this id: {0}", viewModel.StudentId));
+                Student edittedStudent = context.Students.Where(s => s.StudentId == viewModel.StudentId).FirstOrDefault();
+                if (edittedStudent == null)
+                {
+                    throw new StudentNotFoundException(string.Format("Cannot found student with this id: {0}", viewModel.StudentId));
+                }
+                mapper.Map<StudentViewModel, Student>(viewModel, edittedStudent);
+                context.SaveChanges();
+            } catch (Exception e)
+            {
+                throw;
             }
-            mapper.Map<StudentViewModel, Student>(viewModel, edittedStudent);
-            context.SaveChanges();
+            
         }
 
         public void CreateStudent(StudentViewModel viewModel)
         {
-            Student student = mapper.Map<Student>(viewModel);
-            context.Students.Add(student);
-            context.SaveChanges();
+            try
+            {
+                Student student = mapper.Map<Student>(viewModel);
+                context.Students.Add(student);
+                context.SaveChanges();
+            } catch (Exception e)
+            {
+                throw;
+            }
+           
         }
 
         public Student GetById(int? id)
         {
-            
-            Student student =  context.Students.Where(s => s.StudentId == id).FirstOrDefault();
-
-            if (student == null)
+            try
             {
-                throw new StudentNotFoundException(string.Format("Cannot found student with this id: {0}", id));
+                Student student = context.Students.Where(s => s.StudentId == id).FirstOrDefault();
+
+                if (student == null)
+                {
+                    throw new StudentNotFoundException(string.Format("Cannot found student with this id: {0}", id));
+                }
+                return student;
+            } catch (Exception e)
+            {
+                throw;
             }
-            return student;
+            
         }
 
         public void DeleteById(int? id)
         {
-            Student student = context.Students.Where(s => s.StudentId == id).FirstOrDefault();
-            if (student == null)
+            try
             {
-                throw new StudentNotFoundException(string.Format("Cannot found student with this id: {0}", id));
+                Student student = context.Students.Where(s => s.StudentId == id).FirstOrDefault();
+                if (student == null)
+                {
+                    throw new StudentNotFoundException(string.Format("Cannot found student with this id: {0}", id));
+                }
+                context.Students.Remove(student);
+                context.SaveChanges();
+            } catch (Exception e)
+            {
+                throw;
             }
-            context.Students.Remove(student);
-            context.SaveChanges();
+            
         }
     }
-
-    [Serializable]
-    public class StudentNotFoundException : CustomException
-    {
-        public StudentNotFoundException()
-        {
-        }
-
-        public StudentNotFoundException(string message) : base(message)
-        {
-        }
-
-        public StudentNotFoundException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
-
-        public StudentNotFoundException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
-
-        public override void LogSelf()
-        {
-            Logger logger = NLog.LogManager.GetCurrentClassLogger();
-            logger.Error(this);
-        }
-    }
+    
 }

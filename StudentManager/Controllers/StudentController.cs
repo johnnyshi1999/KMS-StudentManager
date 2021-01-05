@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using NLog;
+using StudentManager.Logs.CustomExceptions;
 using StudentManager.Models;
 using StudentManager.Services;
 using System;

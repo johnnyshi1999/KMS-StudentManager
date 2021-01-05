@@ -144,6 +144,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Logs\CustomException.cs" />
+    <Compile Include="Logs\CustomExceptions\StudentNotFoundException.cs" />
     <Compile Include="Logs\ExceptionLogger.cs" />
     <Compile Include="Models\StudentViewModel.cs" />
     <Compile Include="SchoolModel.Context.cs">
