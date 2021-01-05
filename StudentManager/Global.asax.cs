@@ -22,11 +22,8 @@ namespace StudentManager
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            MapperConfig = new MapperConfiguration(cfg => 
-            { 
-                cfg.AddProfile(new StudentProfile());
-            });
 
+            ConfigureAutoMapper();
             //var config = new NLog.Config.LoggingConfiguration();
 
             //// Targets where to log to: File and Console
@@ -39,6 +36,14 @@ namespace StudentManager
 
             //// Apply config           
             //NLog.LogManager.Configuration = config;
+        }
+
+        private void ConfigureAutoMapper()
+        {
+            MapperConfig = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new StudentProfile());
+            });
         }
 
         protected void Application_Error()
