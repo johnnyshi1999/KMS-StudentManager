@@ -1,0 +1,182 @@
+@import "./breakpoints";
+
+// Small devices
+@mixin sm {
+	@media (min-width: #{$screen-sm-min}) {
+		@content;
+	}
+}
+
+// Medium devices
+@mixin md {
+	@media (min-width: #{$screen-md-min}) {
+		@content;
+	}
+}
+
+// Large devices
+@mixin lg {
+	@media (min-width: #{$screen-lg-min}) {
+		@content;
+	}
+}
+
+// Extra large devices
+@mixin xl {
+	@media (min-width: #{$screen-xl-min}) {
+		@content;
+	}
+}
+
+.inputLabel {
+	margin-right: 5pt;
+	text-align: left;
+	width: 50pt;
+
+	@include lg {
+		text-align: right;
+		width: 50pt;
+	}
+}
+
+.loginButton {
+	width: 100%;
+	white-space: nowrap;
+	background-color: #44c767;
+	border-radius: 28px;
+	border: 1px solid #18ab29;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 17px;
+	padding: 5px 30px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #2f6627;
+}
+.loginButton:hover {
+	background-color: #5cbf2a;
+}
+.loginButton:active {
+	position: relative;
+	top: 1px;
+}
+
+.forgotButton {
+	width: 100%;
+	white-space: nowrap;
+	background-color: #7892c2;
+	border-radius: 28px;
+	border: 1px solid #4e6096;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 17px;
+	padding: 5px 30px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #283966;
+}
+.forgotButton:hover {
+	background-color: #476e9e;
+}
+.forgotButton:active {
+	position: relative;
+	top: 1px;
+}
+
+.loginContainer {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	justify-items: center;
+	@include sm {
+		padding-left: 20pt;
+		padding-right: 20pt;
+	}
+}
+
+.customInput {
+	width: 200pt;
+	margin-right: 5pt;
+	border: 1px solid black;
+}
+
+.inputRow {
+	display: flex;
+	padding: 10pt;
+	margin: auto;
+	flex-direction: column;
+	justify-content: center;
+	
+	align-self: center;
+  justify-self: center;
+	grid-column-start: 1;
+	grid-column-end: 4;
+	@include sm {
+		flex-direction: column;
+		align-items: flex-start;
+
+	}
+	@include md {
+		flex-direction: column;
+		align-items: flex-start;
+		grid-column-start: 1;
+		grid-column-end: 3;
+	}
+
+	@include lg {
+		flex-direction: row;
+		align-items: flex-start;
+		grid-column-start: 1;
+		grid-column-end: 4;
+	}
+
+	@include xl {
+		flex-direction: row;
+		align-items: center;
+		grid-column-start: 1;
+		grid-column-end: 4;
+	}
+}
+
+.buttonRow {
+	display: flex;
+	padding: 10pt;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	grid-column-start: 1;
+	grid-column-end: 4;
+	grid-row: 4;
+	@include sm {
+		flex-direction: row;
+		grid-column-start: 1;
+		grid-column-end: 4;
+		grid-row: 4;
+	}
+	
+	@include md {
+		flex-direction: column;
+		justify-self: left;
+		grid-column-start: 3;
+		grid-column-end: 4;
+		grid-row-start: 1;
+		grid-row-end: 4;
+	}
+
+	@include lg {
+		flex-direction: column;
+		justify-self: center;
+		grid-column-start: 1;
+		grid-column-end: 4;
+		grid-row: 4;
+	}
+
+	@include xl {
+		flex-direction: row;
+		justify-self: center;
+		grid-column-start: 1;
+		grid-column-end: 4;
+		grid-row: 4;
+	}
+}
