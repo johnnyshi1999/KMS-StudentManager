@@ -1,0 +1,155 @@
+.loginButton {
+  width: 80%;
+  white-space: normal;
+  background-color: #44c767;
+  border-radius: 28px;
+  border: 1px solid #18ab29;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 17px;
+  padding: 5px 30px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #2f6627; }
+  @media (min-width: 992px) {
+    .loginButton {
+      width: 50%; } }
+  @media (min-width: 1200px) {
+    .loginButton {
+      width: 100%; } }
+
+.loginButton:hover {
+  background-color: #5cbf2a; }
+
+.loginButton:active {
+  position: relative;
+  top: 1px; }
+
+.forgotButton {
+  width: 80%;
+  white-space: normal;
+  background-color: #7892c2;
+  border-radius: 28px;
+  border: 1px solid #4e6096;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 17px;
+  padding: 5px 30px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #283966; }
+  @media (min-width: 992px) {
+    .forgotButton {
+      width: 50%; } }
+  @media (min-width: 1200px) {
+    .forgotButton {
+      width: 100%; } }
+
+.forgotButton:hover {
+  background-color: #476e9e; }
+
+.forgotButton:active {
+  position: relative;
+  top: 1px; }
+
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column; }
+  @media (min-width: 576px) {
+    .loginContainer {
+      flex-direction: column;
+      padding-left: 20pt;
+      padding-right: 20pt; } }
+  @media (min-width: 768px) {
+    .loginContainer {
+      flex-direction: row;
+      padding-left: 50pt;
+      padding-right: 50pt; } }
+  @media (min-width: 992px) {
+    .loginContainer {
+      flex-direction: column;
+      padding-left: 50pt;
+      padding-right: 50pt; } }
+  @media (min-width: 1200px) {
+    .loginContainer {
+      flex-direction: column;
+      padding-left: 50pt;
+      padding-right: 50pt; } }
+
+.labelContainer {
+  flex-direction: row;
+  flex: 3;
+  margin: 0pt 10pt 0pt 0pt; }
+
+.inputLabel {
+  width: 100%;
+  text-align: left; }
+  @media (min-width: 992px) {
+    .inputLabel {
+      text-align: right; } }
+
+.textFieldContainer {
+  margin: 0;
+  flex: 5;
+  align-items: center;
+  justify-content: center;
+  align-content: center; }
+
+.customTextField {
+  width: 100%;
+  margin: 0;
+  border: 1px solid black; }
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; }
+
+.inputRow {
+  display: flex;
+  padding: 10pt;
+  margin: 0pt;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: stretch;
+  flex-grow: 1; }
+  @media (min-width: 576px) {
+    .inputRow {
+      flex-direction: column; } }
+  @media (min-width: 768px) {
+    .inputRow {
+      flex-direction: column; } }
+  @media (min-width: 992px) {
+    .inputRow {
+      flex-direction: row; } }
+  @media (min-width: 1200px) {
+    .inputRow {
+      flex-direction: row; } }
+
+.buttonContainer {
+  display: flex;
+  padding: 10pt;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1; }
+  @media (min-width: 576px) {
+    .buttonContainer {
+      flex-direction: row; } }
+  @media (min-width: 768px) {
+    .buttonContainer {
+      flex-direction: column;
+      flex-grow: 2; } }
+  @media (min-width: 992px) {
+    .buttonContainer {
+      flex-direction: column;
+      flex-grow: 1; } }
+  @media (min-width: 1200px) {
+    .buttonContainer {
+      flex-direction: row;
+      flex-grow: 1; } }
