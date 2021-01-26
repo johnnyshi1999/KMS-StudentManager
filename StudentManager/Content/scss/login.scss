@@ -1,47 +1,8 @@
 @import "./breakpoints";
 
-// Small devices
-@mixin sm {
-	@media (min-width: #{$screen-sm-min}) {
-		@content;
-	}
-}
-
-// Medium devices
-@mixin md {
-	@media (min-width: #{$screen-md-min}) {
-		@content;
-	}
-}
-
-// Large devices
-@mixin lg {
-	@media (min-width: #{$screen-lg-min}) {
-		@content;
-	}
-}
-
-// Extra large devices
-@mixin xl {
-	@media (min-width: #{$screen-xl-min}) {
-		@content;
-	}
-}
-
-.inputLabel {
-	margin-right: 5pt;
-	text-align: left;
-	width: 50pt;
-
-	@include lg {
-		text-align: right;
-		width: 50pt;
-	}
-}
-
 .loginButton {
-	width: 100%;
-	white-space: nowrap;
+	width: 80%;
+	white-space: normal;
 	background-color: #44c767;
 	border-radius: 28px;
 	border: 1px solid #18ab29;
@@ -53,6 +14,14 @@
 	padding: 5px 30px;
 	text-decoration: none;
 	text-shadow: 0px 1px 0px #2f6627;
+
+	@include breakpoint(lg-min) {
+		width: 50%;
+	}
+
+	@include breakpoint(xl-min) {
+		width: 100%;
+	}
 }
 .loginButton:hover {
 	background-color: #5cbf2a;
@@ -63,8 +32,8 @@
 }
 
 .forgotButton {
-	width: 100%;
-	white-space: nowrap;
+	width: 80%;
+	white-space: normal;
 	background-color: #7892c2;
 	border-radius: 28px;
 	border: 1px solid #4e6096;
@@ -76,6 +45,14 @@
 	padding: 5px 30px;
 	text-decoration: none;
 	text-shadow: 0px 1px 0px #283966;
+
+	@include breakpoint(lg-min) {
+		width: 50%;
+	}
+
+	@include breakpoint(xl-min) {
+		width: 100%;
+	}
 }
 .forgotButton:hover {
 	background-color: #476e9e;
@@ -86,97 +63,120 @@
 }
 
 .loginContainer {
-	display: grid;
-	grid-template-columns: auto auto auto;
-	justify-items: center;
-	@include sm {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	@include breakpoint(sm-min) {
+		flex-direction: column;
 		padding-left: 20pt;
 		padding-right: 20pt;
 	}
+
+	@include breakpoint (md-min) {
+		flex-direction: row;
+		padding-left: 50pt;
+		padding-right: 50pt;
+	}
+
+	@include breakpoint (lg-min) {
+		flex-direction: column;
+		padding-left: 50pt;
+		padding-right: 50pt;
+	}
+
+	@include breakpoint (xl-min) {
+		flex-direction: column;
+		padding-left: 50pt;
+		padding-right: 50pt;
+	}
 }
 
-.customInput {
-	width: 200pt;
-	margin-right: 5pt;
+.labelContainer {
+	flex-direction: row;
+	flex: 3;
+	margin: 0pt 10pt 0pt 0pt;
+}
+.inputLabel {
+	width: 100%;
+	text-align: left;
+	@include breakpoint(lg-min) {
+		text-align: right;
+	}
+}
+
+.textFieldContainer {
+	margin: 0;
+	flex: 5;
+	align-items: center;
+	justify-content: center;
+	align-content: center;
+}
+
+.customTextField {
+	width: 100%;
+	margin: 0;
 	border: 1px solid black;
+}
+
+.inputContainer {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
 }
 
 .inputRow {
 	display: flex;
 	padding: 10pt;
-	margin: auto;
+	margin: 0pt;
 	flex-direction: column;
+	flex-wrap: wrap;
 	justify-content: center;
-	
-	align-self: center;
-  justify-self: center;
-	grid-column-start: 1;
-	grid-column-end: 4;
-	@include sm {
+	align-content: center;
+	align-items: stretch;
+
+	// align-self: center;
+	// justify-self: center;
+	flex-grow: 1;
+	@include breakpoint(sm-min) {
 		flex-direction: column;
-		align-items: flex-start;
-
 	}
-	@include md {
+	@include breakpoint(md-min) {
 		flex-direction: column;
-		align-items: flex-start;
-		grid-column-start: 1;
-		grid-column-end: 3;
 	}
 
-	@include lg {
+	@include breakpoint(lg-min) {
 		flex-direction: row;
-		align-items: flex-start;
-		grid-column-start: 1;
-		grid-column-end: 4;
 	}
 
-	@include xl {
+	@include breakpoint(xl-min) {
 		flex-direction: row;
-		align-items: center;
-		grid-column-start: 1;
-		grid-column-end: 4;
 	}
 }
 
-.buttonRow {
+.buttonContainer {
 	display: flex;
 	padding: 10pt;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	grid-column-start: 1;
-	grid-column-end: 4;
-	grid-row: 4;
-	@include sm {
+	flex-grow: 1;
+	@include breakpoint(sm-min) {
 		flex-direction: row;
-		grid-column-start: 1;
-		grid-column-end: 4;
-		grid-row: 4;
-	}
-	
-	@include md {
-		flex-direction: column;
-		justify-self: left;
-		grid-column-start: 3;
-		grid-column-end: 4;
-		grid-row-start: 1;
-		grid-row-end: 4;
 	}
 
-	@include lg {
+	@include breakpoint(md-min) {
 		flex-direction: column;
-		justify-self: center;
-		grid-column-start: 1;
-		grid-column-end: 4;
-		grid-row: 4;
+		flex-grow: 2;
 	}
 
-	@include xl {
+	@include breakpoint(lg-min) {
+		flex-direction: column;
+		flex-grow: 1;
+		
+	}
+
+	@include breakpoint(xl-min) {
 		flex-direction: row;
-		justify-self: center;
-		grid-column-start: 1;
-		grid-column-end: 4;
-		grid-row: 4;
+		flex-grow: 1;
 	}
 }

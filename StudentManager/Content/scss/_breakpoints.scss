@@ -9,3 +9,16 @@ $screen-lg-min: 992px;
 
 // Large tablets and desktops
 $screen-xl-min: 1200px;
+
+$breakpoints: (
+  sm-min: $screen-sm-min,
+  md-min: $screen-md-min,
+  lg-min: $screen-lg-min,
+  xl-min: $screen-xl-min,
+);
+
+@mixin breakpoint($bp, $rule: min-width) {
+	@media (#{$rule}: map-get($breakpoints, $bp)) {
+		@content;
+	}
+}
