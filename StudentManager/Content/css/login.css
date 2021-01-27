@@ -9,7 +9,6 @@
   border: 1px solid #36393F;
   display: inline-block;
   cursor: pointer;
-  color: #ffffff;
   padding: 5px 30px;
   text-decoration: none;
   text-shadow: 0px 1px 0px #36393F; }
@@ -21,6 +20,31 @@
   background-color: #646fce; }
 
 .confirmButton:active {
+  position: relative;
+  top: 1px; }
+
+.cancelButton {
+  color: #E7E7E7;
+  font-size: 17px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  width: 50%;
+  white-space: normal;
+  background-color: #555A61;
+  border-radius: 28px;
+  border: 1px solid #26262B;
+  display: inline-block;
+  cursor: pointer;
+  padding: 5px 30px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #36393F; }
+  @media (min-width: 1200px) {
+    .cancelButton {
+      width: 100%; } }
+
+.cancelButton:hover {
+  background-color: #26262B; }
+
+.forgotButton:active {
   position: relative;
   top: 1px; }
 

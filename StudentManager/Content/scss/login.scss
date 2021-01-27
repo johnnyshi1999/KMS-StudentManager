@@ -11,7 +11,6 @@
 	border: 1px solid $color-secondary;
 	display: inline-block;
 	cursor: pointer;
-	color: #ffffff;
 	padding: 5px 30px;
 	text-decoration: none;
 	text-shadow: 0px 1px 0px $color-secondary;
@@ -24,6 +23,32 @@
 	background-color: $color-highlight-blue-dark;
 }
 .confirmButton:active {
+	position: relative;
+	top: 1px;
+}
+
+.cancelButton {
+	@include text(normal);
+	width: 50%;
+	white-space: normal;
+	background-color: $color-primary;
+	border-radius: 28px;
+	border: 1px solid $color-dark-background;
+	display: inline-block;
+	cursor: pointer;
+	padding: 5px 30px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px $color-secondary;
+
+	@include breakpoint(xl-min) {
+		width: 100%;
+	}
+}
+
+.cancelButton:hover {
+	background-color: $color-dark-background;
+}
+.forgotButton:active {
 	position: relative;
 	top: 1px;
 }
