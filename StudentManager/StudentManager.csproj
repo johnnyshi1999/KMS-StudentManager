@@ -178,6 +178,12 @@
     <Content Include="favicon.ico" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Old_Data\Content\css\bootstrap-theme.css" />
+    <Content Include="Old_Data\Content\css\bootstrap-theme.min.css" />
+    <Content Include="Old_Data\Content\css\bootstrap.css" />
+    <Content Include="Old_Data\Content\css\bootstrap.min.css" />
+    <Content Include="Old_Data\Content\css\Site.css" />
+    <Content Include="Old_Data\Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="SchoolModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SchoolModel.Context.cs</LastGenOutput>
@@ -201,6 +207,27 @@
     <Content Include="Content\css\bootstrap-theme.min.css.map" />
     <Content Include="Content\css\bootstrap.css.map" />
     <Content Include="Content\css\bootstrap.min.css.map" />
+    <Content Include="Old_Data\Views\_ViewStart.cshtml" />
+    <Content Include="Old_Data\Views\Home\About.cshtml" />
+    <Content Include="Old_Data\Views\Home\Contact.cshtml" />
+    <Content Include="Old_Data\Views\Home\Index.cshtml" />
+    <Content Include="Old_Data\Views\Login\Index.cshtml" />
+    <Content Include="Old_Data\Views\Shared\_Layout.cshtml" />
+    <Content Include="Old_Data\Views\Shared\Error.cshtml" />
+    <Content Include="Old_Data\Views\Student\Create.cshtml" />
+    <Content Include="Old_Data\Views\Student\Delete.cshtml" />
+    <Content Include="Old_Data\Views\Student\Details.cshtml" />
+    <Content Include="Old_Data\Views\Student\Edit.cshtml" />
+    <Content Include="Old_Data\Views\Student\Index.cshtml" />
+    <Content Include="Old_Data\Views\Web.config" />
+    <Content Include="Old_Data\Content\css\bootstrap-theme.css.map" />
+    <Content Include="Old_Data\Content\css\bootstrap-theme.min.css.map" />
+    <Content Include="Old_Data\Content\css\bootstrap.css.map" />
+    <Content Include="Old_Data\Content\css\bootstrap.min.css.map" />
+    <Content Include="Old_Data\Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Old_Data\Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Old_Data\Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Old_Data\Content\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -240,6 +267,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\scss\" />
+    <Folder Include="Old_Data\Content\scss\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />

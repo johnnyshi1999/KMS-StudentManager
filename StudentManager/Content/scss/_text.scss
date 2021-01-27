@@ -1,0 +1,23 @@
+@import "./colors";
+
+$text-sizes: (
+  normal: 17px,
+
+  large: 20px,
+  
+);
+
+$text-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+@mixin text ($size: map-get($text-sizes, normal), $color: $color-text) {
+  color: $color-text;
+  font-size: map-get($text-sizes, $size);
+  font-family: $text-font;
+};
+
+@mixin text-bold ($size: map-get($text-sizes, normal), $color: $color-text) {
+  color: $color-text;
+  font-size: map-get($text-sizes, $size);
+  font-family: $text-font;
+  font-weight: bold;
+};
